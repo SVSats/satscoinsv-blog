@@ -29,30 +29,20 @@ Linux ofrece una amplia variedad de entornos de escritorio:
 ## Comandos Básicos de la Terminal
 
 Aunque los entornos gráficos simplifican muchas tareas, familiarizarte con algunos comandos básicos de la terminal es bastante importante. Navegar por directorios, copiar archivos y actualizar el sistema mediante la línea de comandos proporciona un mayor entendimiento y control sobre el sistema operativo.
-Los 8 Comandos que Realmente Vas a Usar (2026)
+Los 10 Comandos que Realmente Vas a Usar (2026)
 No necesitas memorizar 200 comandos. Estos cubren el 95% de lo cotidiano:
 
-sudo apt update && sudo apt upgrade -y
-Actualiza todo el sistema – HAZLO SIEMPRE PRIMERO
+´pwd´: muestra la ruta completa desde el directorio raíz hasta el directorio de trabajo actual.
+´ls´: lista los archivos en el directorio actual. Con ls -a se muestran los archivos ocultos.
+´cd´: permite cambiar de directorio. cd .. retrocede al directorio anterior.
+´mkdir y rmdir´: crean y eliminan directorios. rmdir solo funciona con directorios vacíos.
+´rm´: elimina archivos y carpetas. Con rm -r se eliminan directorios y su contenido.
+´touch´: crea archivos vacíos. Ejemplo: touch nuevo.txt.
+´man y --help´: muestran ayuda sobre un comando. Ejemplo: man ls o cd --help.
+´cp´: copia archivos. Acepta dos argumentos: origen y destino.
+´mv´: mueve o renombra archivos.
+´locate´: busca archivos en el sistema, ignorando mayúsculas y minúsculas con -i.
 
-pwd # ¿Dónde estoy? ls # Lista normal ls -la # Lista detallada + ocultos
-Navegación básica
-
-cd Documentos # entrar cd .. # subir cd ~ # ir a home
-Moverte por carpetas
-
-df -h # Espacio en disco (muy útil) free -h # Memoria RAM usada
-Información del sistema
-
-sudo apt install vlc firefox-esr
-Instalar programas (cambia a flatpak o snap si prefieres)
-
-reboot # Reiniciar shutdown now # Apagar ahora
-Apagar/reiniciar desde terminal
-
-Extra útil 2026:
-flatpak install flathub org.libreoffice.LibreOffice
-Programas modernos sin romper el sistema
 
 ## Gestión de Paquetes
 
