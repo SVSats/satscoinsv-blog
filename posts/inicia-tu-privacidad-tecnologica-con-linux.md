@@ -29,6 +29,30 @@ Linux ofrece una amplia variedad de entornos de escritorio:
 ## Comandos Básicos de la Terminal
 
 Aunque los entornos gráficos simplifican muchas tareas, familiarizarte con algunos comandos básicos de la terminal es bastante importante. Navegar por directorios, copiar archivos y actualizar el sistema mediante la línea de comandos proporciona un mayor entendimiento y control sobre el sistema operativo.
+Los 8 Comandos que Realmente Vas a Usar (2026)
+No necesitas memorizar 200 comandos. Estos cubren el 95% de lo cotidiano:
+
+sudo apt update && sudo apt upgrade -y
+Actualiza todo el sistema – HAZLO SIEMPRE PRIMERO
+
+pwd # ¿Dónde estoy? ls # Lista normal ls -la # Lista detallada + ocultos
+Navegación básica
+
+cd Documentos # entrar cd .. # subir cd ~ # ir a home
+Moverte por carpetas
+
+df -h # Espacio en disco (muy útil) free -h # Memoria RAM usada
+Información del sistema
+
+sudo apt install vlc firefox-esr
+Instalar programas (cambia a flatpak o snap si prefieres)
+
+reboot # Reiniciar shutdown now # Apagar ahora
+Apagar/reiniciar desde terminal
+
+Extra útil 2026:
+flatpak install flathub org.libreoffice.LibreOffice
+Programas modernos sin romper el sistema
 
 ## Gestión de Paquetes
 
