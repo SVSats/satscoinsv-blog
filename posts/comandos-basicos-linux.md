@@ -306,7 +306,7 @@ exit
 - Usa `man comando` o `comando --help` para más información.
 - `history` para ver comandos anteriores.
 - `Ctrl + R` para buscar en el historial rápidamente.
-- ¡Únete a la comunidad! Conecta con **Linux El Salvador** y el grupo **@kumpaslsv** en Telegram para resolver dudas.
+- ¡Puedes encontrarme en Telegram! como **@marvincha01** para resolver dudas.
 ```
 
 ---
