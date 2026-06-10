@@ -1,243 +1,320 @@
-🐧 Comandos básicos de Linux para principiantes
-Guía completa — explora, copia y aprende
+```markdown
+# 🐧 Comandos de Linux para principiantes (Guía Interactiva)  
+**Explora, copia, practica y domina la terminal**
 
-Practica en tu terminal — cada comando es una herramienta poderosa.
+> Practica en tu terminal o en nuestro **Terminal Virtual Seguro**. Cada comando es una herramienta poderosa.  
+> **Copia y pega** directamente desde los bloques de código.
 
-Índice
-Permisos
-Navegación
-Gestión de archivos y directorios
-Búsqueda y filtrado
-Información del sistema y procesos
-Red y conectividad
-Gestión de paquetes
-Compilar desde código fuente
-Permisos
-sudo
-Ejecuta un comando con privilegios de superusuario (root).
+---
 
-Ejemplos:
+## 📋 Índice
 
+- [Permisos](#permisos)
+- [Navegación](#navegación)
+- [Gestión de archivos y directorios](#gestión-de-archivos-y-directorios)
+- [Búsqueda y filtrado](#búsqueda-y-filtrado)
+- [Pipes y Redirecciones (El superpoder de Linux)](#pipes-y-redirecciones)
+- [Alias (Tus propios atajos)](#alias)
+- [Información del sistema y procesos](#información-del-sistema-y-procesos)
+- [Red, SSH y conectividad](#red-ssh-y-conectividad)
+- [Gestión de paquetes](#gestión-de-paquetes)
+- [Compilar desde código fuente](#compilar-desde-código-fuente)
+- [🏆 Tabla de Progreso y Ejercicios Prácticos](#tabla-de-progreso-y-ejercicios-prácticos)
+
+---
+
+## 🔑 Permisos
+
+### `sudo` — Ejecuta un comando con privilegios de superusuario
+```bash
 sudo nano /etc/passwd
+sudo apt update
+```
 
-Navegación
-ls
-Lista el contenido de un directorio.
+---
 
-Ejemplos:
-ls
-ls -l
-ls -a /etc
+## 🧭 Navegación
 
-cd
-Cambia el directorio actual.
+### `ls` — Lista el contenido de un directorio
+```bash
+ls          # simple
+ls -l       # formato largo (permisos, tamaño, fecha)
+ls -la      # muestra archivos ocultos
+ls -h       # tamaños legibles
+```
 
-Ejemplos:
+### `cd` — Cambia de directorio
+```bash
 cd /etc
-cd ..
-cd ~
+cd ..           # subir un nivel
+cd ~            # ir al home
+cd -            # volver al directorio anterior
+```
 
+### `pwd` — Muestra la ruta actual
+```bash
 pwd
-Muestra la ruta del directorio actual.
+```
 
-Ejemplos:
-pwd
+### `tree` — Estructura de directorios en árbol
+```bash
+tree            # instalación: sudo apt install tree
+tree -L 2       # solo 2 niveles
+tree -d         # solo directorios
+```
 
-tree
-Muestra estructura de directorios en árbol.
-
-Ejemplos:
-tree
-tree -d
-tree -L 2
-
+### `clear` — Limpia la pantalla
+```bash
 clear
-Limpia la pantalla de la terminal.
+# o presiona Ctrl + L
+```
 
-Ejemplos:
-clear
+---
 
-Gestión de archivos y directorios
-cat
-Muestra o concatena archivos.
+## 📁 Gestión de archivos y directorios
 
-Ejemplos:
-cat ejemplo.txt
+### `cat` — Muestra o concatena archivos
+```bash
+cat archivo.txt
 cat parte1.txt parte2.txt > completo.txt
+cat > nuevo.txt     # crea archivo (Ctrl+D para guardar)
+```
 
-cp
-Copia archivos o directorios.
+### `cp` — Copia archivos o directorios
+```bash
+cp archivo.txt /ruta/destino/
+cp -r carpeta/ respaldo/          # recursivo (carpetas)
+cp -p origen destino              # preserva permisos y timestamps
+```
 
-Ejemplos:
-cp documento.txt /home/user/Documentos/
-cp -r proyecto/ respaldo/
-cp -p config.ini /etc/miapp/
+### `mv` — Mueve o renombra
+```bash
+mv archivo.txt /nueva/carpeta/
+mv viejo.txt nuevo.txt            # renombrar
+```
 
-mv
-Mueve o renombra archivos.
+### `rm` — Elimina (¡usa con cuidado!)
+```bash
+rm archivo.txt
+rm -r carpeta/                    # recursivo
+rm -i archivo.txt                 # confirma antes de borrar
+rm -rf carpeta/                   # forzado (peligroso)
+```
 
-Ejemplos:
-mv informe.txt Documentos/
-mv notas.txt notas_antiguas.txt
-
-rm
-Elimina archivos o directorios (¡cuidado!).
-
-Ejemplos:
-rm notas.txt
-rm -r proyecto/
-rm -i archivo.txt
-
-mkdir
-Crea nuevos directorios.
-
-Ejemplos:
+### `mkdir` — Crea directorios
+```bash
 mkdir proyectos
-mkdir -p proyectos/web/frontend/src
+mkdir -p proyectos/web/frontend/src   # crea toda la ruta de una vez
+```
 
-nano
-Editor de texto simple en terminal.
-
-Ejemplos:
-nano notas.txt
+### `nano` — Editor de texto simple
+```bash
+nano archivo.txt
 sudo nano /etc/hosts
+# Atajos: Ctrl+O (guardar), Enter (confirmar), Ctrl+X (salir)
+```
 
-chown
-Cambia propietario y grupo.
-
-Ejemplos:
-sudo chown usuario ejemplo.sh
+### `chown` y `chmod` — Cambiar propietario y permisos
+```bash
+sudo chown usuario:grupo archivo.txt
 sudo chown -R usuario:usuario /var/www
 
-chmod
-Cambia permisos de archivos.
+chmod 644 documento.txt           # lectura/escritura para dueño, solo lectura para otros
+chmod +x script.sh                # dar permiso de ejecución
+chmod 755 script.sh
+```
 
-Ejemplos:
-chmod +x miscript.sh
-chmod 644 documento.txt
-chmod u+w ejemplo.txt
+### `./` — Ejecutar script
+```bash
+./mi_script.sh
+sudo ./instalador.sh
+```
 
-./
-Ejecuta un script en el directorio actual.
+### `tar` — Comprimir y descomprimir
+```bash
+tar -czvf backup.tar.gz carpeta/          # comprimir
+tar -xzvf backup.tar.gz                   # descomprimir
+tar -tvf archivo.tar.gz                   # ver contenido
+```
 
-Ejemplos:
-./script.sh
-sudo ./script.sh
+---
 
-tar
-Empaqueta y comprime archivos.
+## 🔗 Pipes y Redirecciones
 
-Ejemplos:
-tar -czvf backup.tar.gz documentos/
-tar -xzvf backup.tar.gz
+### `|` (Pipe) — Conectar la salida de un comando con la entrada de otro
+```bash
+ps aux | grep firefox               # buscar procesos activos
+cat servidor.log | grep "ERROR"     # filtrar solo los errores de un log
+ls -l | less                        # ver listas largas página por página
+```
 
-Búsqueda y filtrado
-grep
-Busca texto dentro de archivos o entrada.
+### `>` y `>>` — Redireccionar salida a archivos
+```bash
+echo "Hola El Salvador" > saludo.txt   # crea o sobrescribe el archivo
+echo "¡Pura vida!" >> saludo.txt       # añade una línea al final sin borrar
+ls -l > archivos.txt                   # guarda la lista de archivos en un .txt
+```
 
-Ejemplos:
-grep 'error' servidor.log
-grep -i 'usuario' datos.txt
-ps aux | grep firefox
+---
 
-find
-Busca archivos y directorios.
+## ⚡ Alias
 
-Ejemplos:
-find ./ -name 'notas.txt'
-find / -type f -name '*.pdf'
-find . -type f -name '*.tmp' -delete
+### Crea tus propios atajos personalizados
+```bash
+alias actualizar='sudo apt update && sudo apt upgrade'
+alias misproyectos='cd ~/Documentos/proyectos && ls -la'
+alias ip='curl ifconfig.me'
 
-Información del sistema y procesos
+# Para que sea permanente, guárdalo en tu archivo de configuración
+nano ~/.bashrc
+# Añade tus alias al final del archivo, guarda y recarga con:
+source ~/.bashrc
+```
+
+---
+
+## 📊 Información del sistema y procesos
+
+### `top` / `htop` — Procesos en tiempo real
+```bash
 top
-Muestra procesos en tiempo real y uso de recursos.
+# htop es más amigable y visual (instalar con: sudo apt install htop)
+```
 
-Ejemplos:
-top
-top -u usuario
-
-ps
-Instantánea de procesos.
-
-Ejemplos:
-ps
+### `ps` — Instantánea de procesos
+```bash
 ps aux
 ps -ef
+```
 
-df
-Espacio en disco de sistemas de archivos.
+### `df` y `du` — Uso de disco
+```bash
+df -h                     # espacio disponible en disco
+du -sh carpeta/           # tamaño total de una carpeta
+```
 
-Ejemplos:
-df -h
-df -h /home
+---
 
-du
-Uso de disco de archivos/directorios.
+## 🌐 Red, SSH y conectividad
 
-Ejemplos:
-du -sh carpeta/
-du -h -d 1 /var/log
-
-Red y conectividad
-curl
-Transfiere datos desde/hacia servidores.
-
-Ejemplos:
+### `curl` y `wget` — Transferir datos y descargar
+```bash
 curl https://example.com
-curl -o salida.js https://...
-curl -C - -O https://.../archivo.iso
-
-wget
-Descarga archivos no interactiva.
-
-Ejemplos:
+curl -I https://example.com          # solo cabeceras HTTP
 wget https://wordpress.org/latest.zip
-wget -c https://.../ubuntu.iso
+wget -c https://.../ubuntu.iso       # continuar descarga interrumpida
+```
 
-Gestión de paquetes
-apt (Debian/Ubuntu)
-Gestor de paquetes para distribuciones basadas en Debian.
+### `ssh` — Conéctate a servidores remotos (VPS)
+```bash
+ssh usuario@192.168.1.100            # conectarse por IP
+ssh -p 2222 usuario@midominio.com    # conectarse por dominio y puerto personalizado
 
-Ejemplos:
-sudo apt install firefox
-sudo apt update && sudo apt upgrade
+# Generar llaves SSH seguras para no usar contraseñas
+ssh-keygen -t ed25519 -C "tu_correo@ejemplo.com"
+```
 
-dnf (Fedora/RHEL)
-Gestor de paquetes para Fedora.
+---
 
-Ejemplos:
-sudo dnf install chrome
-sudo dnf update
+## 📦 Gestión de paquetes
 
-zypper (openSUSE)
-Gestor de paquetes openSUSE.
+| Distribución     | Comando básico                          |
+|------------------|-----------------------------------------|
+| **Debian/Ubuntu** | `sudo apt update && sudo apt upgrade` |
+| **Fedora/RHEL**   | `sudo dnf update`                      |
+| **openSUSE**      | `sudo zypper update`                   |
+| **Arch/Manjaro**  | `sudo pacman -Syu`                     |
+| **Snap**          | `sudo snap install paquete`            |
 
-Ejemplos:
-sudo zypper install ffmpeg
-sudo zypper update
+---
 
-pacman (Arch/Manjaro)
-Gestor de paquetes para Arch Linux.
+## 🛠️ Compilar desde código fuente
 
-Ejemplos:
-sudo pacman -S gimp
-sudo pacman -Syu
-
-snap (Universal)
-Paquetes universales de Canonical.
-
-Ejemplos:
-sudo snap install spotify
-sudo snap list
-
-Compilar desde código fuente
-Compilador desde fuente
-Compila software desde el código fuente.
-
-Ejemplos:
-tar -xf paquete.tar.gz
+```bash
+tar -xf programa.tar.gz
+cd programa
 ./configure
-make && sudo make install
+make
+sudo make install
+```
 
+---
 
-¡Listo! Puedes guardar este contenido en un archivo con extensión `.md` y abrirlo en cualquier editor de Markdown o visor compatible.
+## 🏆 Tabla de Progreso y Ejercicios Prácticos
+
+### 📝 Tabla de Progreso Interactiva
+*(Si estás en la app, marca las casillas para guardar tu avance en la base de datos local)*
+
+| Comando | Descripción | ¡Lo practiqué! |
+|---------|-------------|:--------------:|
+| `ls -la` | Ver archivos ocultos | ⬜ |
+| `cd ~` | Ir al directorio home | ⬜ |
+| `mkdir -p` | Crear rutas completas | ⬜ |
+| `chmod +x` | Dar permisos de ejecución | ⬜ |
+| `grep -i` | Buscar sin importar mayúsculas | ⬜ |
+| `tar -xzvf`| Descomprimir archivos | ⬜ |
+| `|` (Pipe) | Conectar dos comandos | ⬜ |
+| `ssh` | Conectarse a un servidor | ⬜ |
+
+---
+
+### 🎯 Ejercicios Prácticos (Contexto Real y Laboral)
+
+#### 🟢 Ejercicio 1: Monitorear el precio de Bitcoin
+*Objetivo: Usar `curl` y `grep` para obtener datos reales del mercado cripto.*
+```bash
+# Obtener el precio actual de Bitcoin en USD desde una API pública
+curl -s https://api.coindesk.com/v1/bpi/currentprice.json | grep -i "rate_float"
+
+# 💡 Reto: Instala la herramienta `jq` (sudo apt install jq) y formatea la salida:
+# curl -s https://api.coindesk.com/v1/bpi/currentprice.json | jq '.bpi.USD.rate'
+```
+
+#### 🟡 Ejercicio 2: Preparar un entorno de desarrollo web
+*Objetivo: Crear la estructura de un proyecto usando `mkdir` y `touch`.*
+```bash
+# Crear la estructura de un proyecto web (HTML, CSS, JS)
+mkdir -p ~/proyectos/mi-primera-web/{css,js,img}
+cd ~/proyectos/mi-primera-web
+
+# Crear los archivos base
+touch index.html css/styles.css js/script.js
+
+# Verifica que todo se creó correctamente
+tree -L 2
+```
+
+#### 🔴 Ejercicio 3: Desplegar en un VPS (Simulación de trabajo real)
+*Objetivo: Practicar conexión remota y actualización de servidores.*
+```bash
+# 1. Generar una llave SSH segura
+ssh-keygen -t ed25519 -C "satoshi@elsalvador"
+
+# 2. Conectarte a tu servidor (reemplaza con tu IP real de tu VPS gratuito)
+ssh root@tu_ip_del_vps
+
+# 3. Una vez dentro del servidor, actualizar paquetes del sistema
+sudo apt update && sudo apt upgrade -y
+
+# 4. Salir del servidor
+exit 
+```
+
+---
+
+**💡 Consejos finales**
+- Usa `man comando` o `comando --help` para más información.
+- `history` para ver comandos anteriores.
+- `Ctrl + R` para buscar en el historial rápidamente.
+- ¡Únete a la comunidad! Conecta con **Linux El Salvador** y el grupo **@kumpaslsv** en Telegram para resolver dudas.
+```
+
+---
+
+### 💡 Sugerencias para tu aplicación en Python/CustomTkinter:
+
+1. **Terminal Virtual Seguro:** Puedes usar `subprocess` para ejecutar los comandos de los ejercicios en un entorno controlado (como un directorio temporal). La app puede validar si el usuario completó el ejercicio (por ejemplo, verificando si el archivo `index.html` existe en la carpeta `mi-primera-web`).
+2. **Base de Datos SQLite:** La "Tabla de Progreso" puede estar vinculada a tu base de datos local. Cada vez que el usuario marque una casilla o complete un ejercicio, se actualiza su porcentaje de avance.
+3. **Certificados:** Cuando el usuario complete los 3 ejercicios prácticos y marque toda la tabla, la app puede generar automáticamente un **Certificado de Finalización** en PDF usando librerías como `fpdf2` o `reportlab`.
+
+¿Te gustaría que empecemos a estructurar el código en Python para el **terminal virtual seguro** o prefieres primero definir el diseño de la interfaz en **CustomTkinter**?
