@@ -1,6 +1,5 @@
-Guía interactiva de comandos Linux para principiantes
 🐧 Comandos básicos de Linux para principiantes
-Guía completa e interactiva — explora, copia y aprende
+Guía completa — explora, copia y aprende
 
 Practica en tu terminal — cada comando es una herramienta poderosa.
 
