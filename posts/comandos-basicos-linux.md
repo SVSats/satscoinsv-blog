@@ -1,24 +1,244 @@
-Guía interactiva de comandos Linux para principiantes   \* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-primary); line-height: 1.5; transition: background 0.2s, color 0.2s; } /\* Variables tema claro (por defecto) \*/ :root { --bg-body: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a; --text-secondary: #334155; --border: #e2e8f0; --accent: #3b82f6; --accent-hover: #2563eb; --code-bg: #f1f5f9; --code-border: #cbd5e1; --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05); --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1); --header-bg: #ffffffcc; --sidebar-bg: #ffffffcc; } /\* Tema oscuro \*/ body.dark { --bg-body: #0f172a; --bg-surface: #1e293b; --text-primary: #f1f5f9; --text-secondary: #cbd5e1; --border: #334155; --accent: #60a5fa; --accent-hover: #3b82f6; --code-bg: #0f172a; --code-border: #334155; --header-bg: #1e293bcc; --sidebar-bg: #1e293bcc; } a { color: var(--accent); text-decoration: none; } a:hover { color: var(--accent-hover); } /\* Layout \*/ .app { display: flex; min-height: 100vh; } /\* Sidebar \*/ .sidebar { width: 280px; background: var(--sidebar-bg); backdrop-filter: blur(8px); border-right: 1px solid var(--border); position: fixed; top: 0; bottom: 0; left: 0; overflow-y: auto; padding: 2rem 1rem; z-index: 10; transition: transform 0.3s ease; } .sidebar-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); } .sidebar-header i { font-size: 1.8rem; color: var(--accent); } .sidebar-header h2 { font-size: 1.25rem; font-weight: 600; } .nav-links { list-style: none; } .nav-links li { margin-bottom: 0.5rem; } .nav-links a { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 0.5rem; font-weight: 500; transition: all 0.2s; color: var(--text-secondary); } .nav-links a:hover, .nav-links a.active { background: var(--accent); color: white; } .nav-links a i { width: 1.5rem; font-size: 1rem; } /\* Main content \*/ .main { flex: 1; margin-left: 280px; padding: 2rem 2rem 3rem; max-width: calc(100% - 280px); } /\* Header superior \*/ .top-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: var(--header-bg); backdrop-filter: blur(8px); padding: 1rem 1.5rem; border-radius: 1rem; border: 1px solid var(--border); position: sticky; top: 1rem; z-index: 5; } .title-section h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; } .title-section p { color: var(--text-secondary); font-size: 0.875rem; } .search-box { position: relative; } .search-box i { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); } .search-box input { padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 2rem; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-primary); width: 260px; font-size: 0.875rem; outline: none; transition: 0.2s; } .search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(59,130,246,0.2); } .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 2rem; padding: 0.5rem 1rem; cursor: pointer; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem; transition: 0.2s; } /\* Tarjetas de comandos \*/ .commands-grid { display: flex; flex-direction: column; gap: 1rem; } .command-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; transition: box-shadow 0.2s; box-shadow: var(--shadow-sm); } .command-card:hover { box-shadow: var(--shadow-md); } .card-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; cursor: pointer; background: var(--bg-surface); border-bottom: 1px solid transparent; transition: background 0.1s; } .command-title { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.25rem; } .command-title i { color: var(--accent); font-size: 1.3rem; } .badge { background: var(--code-bg); padding: 0.2rem 0.6rem; border-radius: 2rem; font-size: 0.7rem; font-family: monospace; color: var(--accent); border: 1px solid var(--border); } .toggle-icon { color: var(--text-secondary); transition: transform 0.2s; } .command-card.expanded .toggle-icon { transform: rotate(180deg); } .card-content { display: none; padding: 1.5rem; border-top: 1px solid var(--border); background: var(--bg-surface); } .command-card.expanded .card-content { display: block; } .description { color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 0.95rem; } .examples { margin-top: 1rem; } .examples h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; color: var(--text-secondary); } pre { background: var(--code-bg); border: 1px solid var(--code-border); border-radius: 0.75rem; padding: 0.85rem; overflow-x: auto; font-size: 0.8rem; font-family: 'Menlo', 'Cascadia Code', monospace; margin: 0.5rem 0 1rem; position: relative; } code { font-family: monospace; } .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.25rem 0.5rem; font-size: 0.7rem; cursor: pointer; opacity: 0.7; transition: 0.1s; color: var(--text-primary); } .copy-btn:hover { opacity: 1; } .no-results { text-align: center; padding: 3rem; background: var(--bg-surface); border-radius: 1rem; color: var(--text-secondary); } footer { margin-top: 3rem; text-align: center; font-size: 0.8rem; color: var(--text-secondary); border-top: 1px solid var(--border); padding-top: 2rem; } /\* Scrollbar \*/ ::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-track { background: var(--bg-body); } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; } /\* Mobile \*/ @media (max-width: 768px) { .sidebar { transform: translateX(-100%); width: 260px; } .sidebar.open { transform: translateX(0); } .main { margin-left: 0; max-width: 100%; padding: 1rem; } .top-bar { flex-direction: column; align-items: stretch; position: relative; top: 0; } .menu-toggle { display: block; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem; cursor: pointer; width: fit-content; } .search-box input { width: 100%; } } .menu-toggle { display: none; } @media (max-width: 768px) { .menu-toggle { display: flex; align-items: center; gap: 0.5rem; } }
-
-## Comandos Linux
-
-*   [Permisos](#permisos)
-*   [Navegación](#navegacion)
-*   [Gestión archivos](#gestion-archivos)
-*   [Búsqueda](#busqueda)
-*   [Sistema / Procesos](#sistema)
-*   [Red](#red)
-*   [Gestión paquetes](#paquetes)
-*   [Compilar](#compilar)
-
-Menú
-
-# 🐧 Comandos básicos de Linux para principiantes
-
+Guía interactiva de comandos Linux para principiantes
+🐧 Comandos básicos de Linux para principiantes
 Guía completa e interactiva — explora, copia y aprende
-
-Modo oscuro
 
 Practica en tu terminal — cada comando es una herramienta poderosa.
 
-// ======================== DATOS DE COMANDOS ======================== const commandsData = \[ // Permisos { name: "sudo", section: "permisos", description: "Ejecuta un comando con privilegios de superusuario (root).", examples: \["sudo nano /etc/passwd"\], icon: "fas fa-shield-alt" }, // Navegación { name: "ls", section: "navegacion", description: "Lista el contenido de un directorio.", examples: \["ls", "ls -l", "ls -a /etc"\], icon: "fas fa-list" }, { name: "cd", section: "navegacion", description: "Cambia el directorio actual.", examples: \["cd /etc", "cd ..", "cd ~"\], icon: "fas fa-arrow-right" }, { name: "pwd", section: "navegacion", description: "Muestra la ruta del directorio actual.", examples: \["pwd"\], icon: "fas fa-location-dot" }, { name: "tree", section: "navegacion", description: "Muestra estructura de directorios en árbol.", examples: \["tree", "tree -d", "tree -L 2"\], icon: "fas fa-tree" }, { name: "clear", section: "navegacion", description: "Limpia la pantalla de la terminal.", examples: \["clear"\], icon: "fas fa-eraser" }, // Gestión archivos { name: "cat", section: "gestion-archivos", description: "Muestra o concatena archivos.", examples: \["cat ejemplo.txt", "cat parte1.txt parte2.txt > completo.txt"\], icon: "fas fa-print" }, { name: "cp", section: "gestion-archivos", description: "Copia archivos o directorios.", examples: \["cp documento.txt /home/user/Documentos/", "cp -r proyecto/ respaldo/", "cp -p config.ini /etc/miapp/"\], icon: "fas fa-copy" }, { name: "mv", section: "gestion-archivos", description: "Mueve o renombra archivos.", examples: \["mv informe.txt Documentos/", "mv notas.txt notas\_antiguas.txt"\], icon: "fas fa-arrows-alt" }, { name: "rm", section: "gestion-archivos", description: "Elimina archivos o directorios (¡cuidado!).", examples: \["rm notas.txt", "rm -r proyecto/", "rm -i archivo.txt"\], icon: "fas fa-trash-alt" }, { name: "mkdir", section: "gestion-archivos", description: "Crea nuevos directorios.", examples: \["mkdir proyectos", "mkdir -p proyectos/web/frontend/src"\], icon: "fas fa-folder-plus" }, { name: "nano", section: "gestion-archivos", description: "Editor de texto simple en terminal.", examples: \["nano notas.txt", "sudo nano /etc/hosts"\], icon: "fas fa-edit" }, { name: "chown", section: "gestion-archivos", description: "Cambia propietario y grupo.", examples: \["sudo chown usuario ejemplo.sh", "sudo chown -R usuario:usuario /var/www"\], icon: "fas fa-user-lock" }, { name: "chmod", section: "gestion-archivos", description: "Cambia permisos de archivos.", examples: \["chmod +x miscript.sh", "chmod 644 documento.txt", "chmod u+w ejemplo.txt"\], icon: "fas fa-key" }, { name: "./", section: "gestion-archivos", description: "Ejecuta un script en el directorio actual.", examples: \["./script.sh", "sudo ./script.sh"\], icon: "fas fa-play" }, { name: "tar", section: "gestion-archivos", description: "Empaqueta y comprime archivos.", examples: \["tar -czvf backup.tar.gz documentos/", "tar -xzvf backup.tar.gz"\], icon: "fas fa-file-archive" }, // Búsqueda { name: "grep", section: "busqueda", description: "Busca texto dentro de archivos o entrada.", examples: \["grep 'error' servidor.log", "grep -i 'usuario' datos.txt", "ps aux | grep firefox"\], icon: "fas fa-filter" }, { name: "find", section: "busqueda", description: "Busca archivos y directorios.", examples: \["find ./ -name 'notas.txt'", "find / -type f -name '\*.pdf'", "find . -type f -name '\*.tmp' -delete"\], icon: "fas fa-search-location" }, // Sistema / procesos { name: "top", section: "sistema", description: "Muestra procesos en tiempo real y uso de recursos.", examples: \["top", "top -u usuario"\], icon: "fas fa-chart-simple" }, { name: "ps", section: "sistema", description: "Instantánea de procesos.", examples: \["ps", "ps aux", "ps -ef"\], icon: "fas fa-tasks" }, { name: "df", section: "sistema", description: "Espacio en disco de sistemas de archivos.", examples: \["df -h", "df -h /home"\], icon: "fas fa-hdd" }, { name: "du", section: "sistema", description: "Uso de disco de archivos/directorios.", examples: \["du -sh carpeta/", "du -h -d 1 /var/log"\], icon: "fas fa-chart-pie" }, // Red { name: "curl", section: "red", description: "Transfiere datos desde/hacia servidores.", examples: \["curl https://example.com", "curl -o salida.js https://...", "curl -C - -O https://.../archivo.iso"\], icon: "fas fa-globe" }, { name: "wget", section: "red", description: "Descarga archivos no interactiva.", examples: \["wget https://wordpress.org/latest.zip", "wget -c https://.../ubuntu.iso"\], icon: "fas fa-download" }, // Paquetes { name: "apt (Debian/Ubuntu)", section: "paquetes", description: "Gestor de paquetes para distribuciones basadas en Debian.", examples: \["sudo apt install firefox", "sudo apt update && sudo apt upgrade"\], icon: "fas fa-box" }, { name: "dnf (Fedora/RHEL)", section: "paquetes", description: "Gestor de paquetes para Fedora.", examples: \["sudo dnf install chrome", "sudo dnf upgrade"\], icon: "fas fa-box" }, { name: "zypper (openSUSE)", section: "paquetes", description: "Gestor de paquetes openSUSE.", examples: \["sudo zypper install ffmpeg", "sudo zypper update"\], icon: "fas fa-box" }, { name: "pacman (Arch/Manjaro)", section: "paquetes", description: "Gestor de paquetes para Arch Linux.", examples: \["sudo pacman -S gimp", "sudo pacman -Syu"\], icon: "fas fa-box" }, { name: "snap (Universal)", section: "paquetes", description: "Paquetes universales de Canonical.", examples: \["sudo snap install spotify", "sudo snap refresh"\], icon: "fas fa-cube" }, // Compilar { name: "Compilar desde fuente", section: "compilar", description: "Compila software desde el código fuente.", examples: \["tar -xf paquete.tar.gz", "./configure", "make && sudo make install"\], icon: "fas fa-code-branch" } \]; const container = document.getElementById('commandsContainer'); const searchInput = document.getElementById('searchInput'); let activeSection = ''; function renderCommands(filter = '') { const filtered = commandsData.filter(cmd => cmd.name.toLowerCase().includes(filter.toLowerCase()) || cmd.description.toLowerCase().includes(filter.toLowerCase()) ); if (filtered.length === 0) { container.innerHTML = \`<div class="no-results"><i class="fas fa-terminal"></i> <br> No se encontraron comandos para "${filter}"</div>\`; return; } // Agrupar por sección para mantener orden original const sections = { permisos: { title: 'Permisos', icon: 'fas fa-shield-alt', commands: \[\] }, navegacion: { title: 'Navegación', icon: 'fas fa-folder-open', commands: \[\] }, 'gestion-archivos': { title: 'Gestión de archivos y directorios', icon: 'fas fa-file-alt', commands: \[\] }, busqueda: { title: 'Búsqueda y filtrado', icon: 'fas fa-search', commands: \[\] }, sistema: { title: 'Información del sistema y procesos', icon: 'fas fa-chart-line', commands: \[\] }, red: { title: 'Red y conectividad', icon: 'fas fa-network-wired', commands: \[\] }, paquetes: { title: 'Gestión de paquetes', icon: 'fas fa-box', commands: \[\] }, compilar: { title: 'Compilar desde código fuente', icon: 'fas fa-code', commands: \[\] } }; filtered.forEach(cmd => { if (sections\[cmd.section\]) { sections\[cmd.section\].commands.push(cmd); } }); let html = ''; for (const \[key, sec\] of Object.entries(sections)) { if (sec.commands.length === 0) continue; html += \`<div class="section-wrapper" id="${key}"><h3 style="margin: 1.5rem 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;"><i class="${sec.icon}"></i> ${sec.title}</h3>\`; sec.commands.forEach(cmd => { const examplesHtml = cmd.examples.map(ex => { const escapedEx = ex.replace(/</g, '&lt;').replace(/>/g, '&gt;'); return \`<div style="position: relative;"><pre><code>${escapedEx}</code><button class="copy-btn" data-code="${escapedEx.replace(/"/g, '&quot;')}"><i class="fas fa-copy"></i> Copiar</button></pre></div>\`; }).join(''); html += \` <div class="command-card" data-name="${cmd.name.toLowerCase()}"> <div class="card-header"> <div class="command-title"> <i class="${cmd.icon}"></i> <span>${cmd.name}</span> <span class="badge">${cmd.section}</span> </div> <i class="fas fa-chevron-down toggle-icon"></i> </div> <div class="card-content"> <div class="description">${cmd.description}</div> <div class="examples"> <h4>Ejemplos</h4> ${examplesHtml} </div> </div> </div> \`; }); html += \`</div>\`; } container.innerHTML = html; attachCardEvents(); attachCopyEvents(); } function attachCardEvents() { document.querySelectorAll('.command-card').forEach(card => { const header = card.querySelector('.card-header'); header.addEventListener('click', (e) => { if (e.target.classList.contains('copy-btn')) return; card.classList.toggle('expanded'); }); // Abierto por defecto? mejor que estén cerrados para no abrumar, pero si hay búsqueda abrir todos? lo dejamos cerrado. }); } function attachCopyEvents() { document.querySelectorAll('.copy-btn').forEach(btn => { btn.addEventListener('click', (e) => { e.stopPropagation(); const code = btn.getAttribute('data-code'); navigator.clipboard.writeText(code).then(() => { const originalText = btn.innerHTML; btn.innerHTML = '<i class="fas fa-check"></i> Copiado!'; setTimeout(() => { btn.innerHTML = originalText; }, 1500); }); }); }); } // Búsqueda en tiempo real searchInput.addEventListener('input', (e) => { renderCommands(e.target.value); }); // Toggle tema oscuro const themeToggle = document.getElementById('themeToggle'); themeToggle.addEventListener('click', () => { document.body.classList.toggle('dark'); const isDark = document.body.classList.contains('dark'); themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> <span>Modo claro</span>' : '<i class="fas fa-moon"></i> <span>Modo oscuro</span>'; }); // Navegación suave y resaltado const navLinks = document.querySelectorAll('.nav-links a'); function setActiveLink() { const scrollPos = window.scrollY + 100; let current = ''; document.querySelectorAll('.section-wrapper').forEach(section => { const id = section.getAttribute('id'); if (id) { const offset = section.offsetTop; if (scrollPos >= offset) { current = id; } } }); navLinks.forEach(link => { link.classList.remove('active'); const href = link.getAttribute('href').substring(1); if (href === current) link.classList.add('active'); }); } window.addEventListener('scroll', setActiveLink); window.addEventListener('load', () => { renderCommands(''); setActiveLink(); // sidebar mobile toggle const menuToggle = document.getElementById('menuToggle'); const sidebar = document.getElementById('sidebar'); if(menuToggle) { menuToggle.addEventListener('click', () => { sidebar.classList.toggle('open'); }); document.addEventListener('click', (e) => { if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('open')) { sidebar.classList.remove('open'); } }); } }); // Expandir tarjeta cuando se hace clic en enlace de navegación, colapsar las demás? no necesario
+Índice
+Permisos
+Navegación
+Gestión de archivos y directorios
+Búsqueda y filtrado
+Información del sistema y procesos
+Red y conectividad
+Gestión de paquetes
+Compilar desde código fuente
+Permisos
+sudo
+Ejecuta un comando con privilegios de superusuario (root).
+
+Ejemplos:
+
+sudo nano /etc/passwd
+
+Navegación
+ls
+Lista el contenido de un directorio.
+
+Ejemplos:
+ls
+ls -l
+ls -a /etc
+
+cd
+Cambia el directorio actual.
+
+Ejemplos:
+cd /etc
+cd ..
+cd ~
+
+pwd
+Muestra la ruta del directorio actual.
+
+Ejemplos:
+pwd
+
+tree
+Muestra estructura de directorios en árbol.
+
+Ejemplos:
+tree
+tree -d
+tree -L 2
+
+clear
+Limpia la pantalla de la terminal.
+
+Ejemplos:
+clear
+
+Gestión de archivos y directorios
+cat
+Muestra o concatena archivos.
+
+Ejemplos:
+cat ejemplo.txt
+cat parte1.txt parte2.txt > completo.txt
+
+cp
+Copia archivos o directorios.
+
+Ejemplos:
+cp documento.txt /home/user/Documentos/
+cp -r proyecto/ respaldo/
+cp -p config.ini /etc/miapp/
+
+mv
+Mueve o renombra archivos.
+
+Ejemplos:
+mv informe.txt Documentos/
+mv notas.txt notas_antiguas.txt
+
+rm
+Elimina archivos o directorios (¡cuidado!).
+
+Ejemplos:
+rm notas.txt
+rm -r proyecto/
+rm -i archivo.txt
+
+mkdir
+Crea nuevos directorios.
+
+Ejemplos:
+mkdir proyectos
+mkdir -p proyectos/web/frontend/src
+
+nano
+Editor de texto simple en terminal.
+
+Ejemplos:
+nano notas.txt
+sudo nano /etc/hosts
+
+chown
+Cambia propietario y grupo.
+
+Ejemplos:
+sudo chown usuario ejemplo.sh
+sudo chown -R usuario:usuario /var/www
+
+chmod
+Cambia permisos de archivos.
+
+Ejemplos:
+chmod +x miscript.sh
+chmod 644 documento.txt
+chmod u+w ejemplo.txt
+
+./
+Ejecuta un script en el directorio actual.
+
+Ejemplos:
+./script.sh
+sudo ./script.sh
+
+tar
+Empaqueta y comprime archivos.
+
+Ejemplos:
+tar -czvf backup.tar.gz documentos/
+tar -xzvf backup.tar.gz
+
+Búsqueda y filtrado
+grep
+Busca texto dentro de archivos o entrada.
+
+Ejemplos:
+grep 'error' servidor.log
+grep -i 'usuario' datos.txt
+ps aux | grep firefox
+
+find
+Busca archivos y directorios.
+
+Ejemplos:
+find ./ -name 'notas.txt'
+find / -type f -name '*.pdf'
+find . -type f -name '*.tmp' -delete
+
+Información del sistema y procesos
+top
+Muestra procesos en tiempo real y uso de recursos.
+
+Ejemplos:
+top
+top -u usuario
+
+ps
+Instantánea de procesos.
+
+Ejemplos:
+ps
+ps aux
+ps -ef
+
+df
+Espacio en disco de sistemas de archivos.
+
+Ejemplos:
+df -h
+df -h /home
+
+du
+Uso de disco de archivos/directorios.
+
+Ejemplos:
+du -sh carpeta/
+du -h -d 1 /var/log
+
+Red y conectividad
+curl
+Transfiere datos desde/hacia servidores.
+
+Ejemplos:
+curl https://example.com
+curl -o salida.js https://...
+curl -C - -O https://.../archivo.iso
+
+wget
+Descarga archivos no interactiva.
+
+Ejemplos:
+wget https://wordpress.org/latest.zip
+wget -c https://.../ubuntu.iso
+
+Gestión de paquetes
+apt (Debian/Ubuntu)
+Gestor de paquetes para distribuciones basadas en Debian.
+
+Ejemplos:
+sudo apt install firefox
+sudo apt update && sudo apt upgrade
+
+dnf (Fedora/RHEL)
+Gestor de paquetes para Fedora.
+
+Ejemplos:
+sudo dnf install chrome
+sudo dnf update
+
+zypper (openSUSE)
+Gestor de paquetes openSUSE.
+
+Ejemplos:
+sudo zypper install ffmpeg
+sudo zypper update
+
+pacman (Arch/Manjaro)
+Gestor de paquetes para Arch Linux.
+
+Ejemplos:
+sudo pacman -S gimp
+sudo pacman -Syu
+
+snap (Universal)
+Paquetes universales de Canonical.
+
+Ejemplos:
+sudo snap install spotify
+sudo snap list
+
+Compilar desde código fuente
+Compilador desde fuente
+Compila software desde el código fuente.
+
+Ejemplos:
+tar -xf paquete.tar.gz
+./configure
+make && sudo make install
+
+
+¡Listo! Puedes guardar este contenido en un archivo con extensión `.md` y abrirlo en cualquier editor de Markdown o visor compatible.
